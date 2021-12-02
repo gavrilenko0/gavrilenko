@@ -1,0 +1,59 @@
+<html>
+<body>
+ 
+   <script>
+   
+      
+      txt = "<gradeReport>"; 
+      txt = txt + "<date>10-06-2008</date>"; 
+      txt = txt + "<subject>Computer Science Fundamentals</subject>"; 
+      txt = txt + "<examiner>prof.Lilenko</examiner>";
+      txt = txt + "<gradeList>"; 
+	  txt = txt + "<gradeRecord>"; 
+      txt = txt + "<student>Rilenko</student>";
+      txt = txt + "<grade>5</grade>"; 
+      txt = txt + "</gradeRecord>"; 
+      txt = txt + "<gradeRecord>"; 
+      txt = txt + "<student>Artilevich</student>";
+      txt = txt + "<grade>4</grade>"; 
+      txt = txt + "</gradeRecord>"; 
+      txt = txt + "<gradeRecord>"; 
+      txt = txt + "<student>Lugov</student>";
+      txt = txt + "<grade>3</grade>"; 
+      txt = txt + "</gradeRecord>"; 
+	  txt = txt + "</gradeList>"; 
+      txt = txt + "</gradeReport>";
+	  
+
+
+      if (window.DOMParser)
+      {
+         parser = new DOMParser();
+         xmlDoc = parser.parseFromString(txt,"text/xml");
+      }
+      else // Internet Explorer
+      {
+         xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+         xmlDoc.async = false;
+         xmlDoc.loadXML(txt);
+      }
+	  
+	 document.write("<table border='1'>");
+	 document.write("<tr><td>Number</td><td>Student</td><td>Grade</td></tr>");
+      var x = xmlDoc.getElementsByTagName("gradeRecord");
+      for (i = 0; i < x.length; i++)
+      {
+		 document.write("<tr><td>");
+		 document.write(i+1);
+		 document.write("</td><td>");
+         document.write(x[i].getElementsByTagName("student")[0].childNodes[0].nodeValue);
+         document.write("</td><td>");
+         document.write(x[i].getElementsByTagName("grade")[0].childNodes[0].nodeValue);
+         document.write("</td></tr>");
+      }
+      document.write("</table>");
+     
+   </script>
+   
+</body>
+</html>
