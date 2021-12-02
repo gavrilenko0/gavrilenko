@@ -26,17 +26,6 @@
 	  
 
 
-      if (window.DOMParser)
-      {
-         parser = new DOMParser();
-         xmlDoc = parser.parseFromString(txt,"text/xml");
-      }
-      else // Internet Explorer
-      {
-         xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
-         xmlDoc.async = false;
-         xmlDoc.loadXML(txt);
-      }
 	  
 	 document.write("<table border='1'>");
 	 document.write("<tr><td>Number</td><td>Student</td><td>Grade</td></tr>");
